@@ -1,0 +1,10 @@
+demo/BUILD/
+demo/DebugConfig/
+*.scvd
+demo/GettingStarted.html
+*.bak
+demo/mbed_config.h
+demo/.mbed
+*/demo.uvg*
+*/demo.uvo*
+*/demo.uvp*

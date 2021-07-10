@@ -1,3 +1,6 @@
 [submodule "demo/libHTU21D"]
 	path = demo/libHTU21D
 	url = git@github.com:ATM-HSW/libHTU21D.git
+[submodule "RegisterReading/libHTU21D"]
+	path = RegisterReading/libHTU21D
+	url = git@github.com:ATM-HSW/libHTU21D.git

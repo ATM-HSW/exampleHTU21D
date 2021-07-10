@@ -1,4 +1,4 @@
-Mbed library for HTU21D temperature and humidity sensor - forked of SparkFun Arnuino library
+Mbed library for HTU21D temperature and humidity sensor - fork of SparkFun Arduino library
 ===========================================================================================
 
 

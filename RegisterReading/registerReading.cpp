@@ -25,14 +25,15 @@
 I2C i2c(I2C_SDA , I2C_SCL );
 
 //Create an instance of the object
-HTU21D myHumidity;
+HTU21D mySensor;
 
 void show_yes_no(const char *prefix, int val) {
   printf("%s%s\n", prefix, val?"yes":"no");
 }
 
 void dump_user_register() {
-  uint8_t reg = myHumidity.readUserRegister();
+  uint16_t reg16;
+  uint8_t reg = mySensor.readUserRegister();
 
   printf("Resolution (Humidity, Temperature): ");
   switch (reg & USER_REGISTER_RESOLUTION_MASK) {
@@ -45,18 +46,23 @@ void dump_user_register() {
   show_yes_no("End of battery: ", reg & USER_REGISTER_END_OF_BATTERY);
   show_yes_no("Heater enabled: ", reg & USER_REGISTER_HEATER_ENABLED);
   show_yes_no("Disable OTP reload: ", reg & USER_REGISTER_DISABLE_OTP_RELOAD);
+  
+  reg16 = mySensor.readDeviceID();
+  printf("device ID %d(0x%x)\n", reg16, reg16);
+  reg16 = mySensor.readFirmwareVersion();
+  printf("firmware %d(0x%x)\n", reg16, reg16);
 }
 
 int main() {
   printf("HTU21D Example\n");
 
-  myHumidity.begin(i2c);
+  mySensor.begin(i2c);
   
   dump_user_register();
 
   while(true) {
-    float humd = myHumidity.readHumidity();
-    float temp = myHumidity.readTemperature();
+    float humd = mySensor.readHumidity();
+    float temp = mySensor.readTemperature();
 
     printf(" Temperature: %f[C]\n", temp);
     printf(" Humidity: %f[%%]\n", humd);
